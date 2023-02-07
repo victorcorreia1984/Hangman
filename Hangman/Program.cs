@@ -47,17 +47,14 @@ namespace Hangman
         {
             foreach (char c in Antwoord1)
             {
-                Console.Write("_ ");
+                Console.Write('-');
             }
             Console.WriteLine();
         }
 
         static void VraVirLetter()
-        {
-
-            foreach (var item in Antwoord1)
-            {
-                string input;
+        { 
+                string input; 
                 do
                 {
                     Console.WriteLine("Tik 'n letter in:");
@@ -65,7 +62,6 @@ namespace Hangman
                 } while (input.Length != 1);
 
                 AantalPogings++;
-            }
         }
 
         private static void EindigSpel()
