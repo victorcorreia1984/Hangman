@@ -5,6 +5,7 @@ namespace Hangman
     class Program
     {
         static string naam;
+        static char[] letters;
         static int AantalPogings;
         static string Antwoord1 = "hangman";
        
@@ -17,8 +18,8 @@ namespace Hangman
 
         private static void BeginSpel()
         {
-            Console.WriteLine("Begin die spelletjie...");
             KryNaam();
+            KryLetters();
         }
 
         static void KryNaam()
@@ -28,12 +29,17 @@ namespace Hangman
 
             if (input.Length >= 2)
                 naam = input; //Gebruiker het 'n geldige naam ingevul
-
             else       
-            {
                 KryNaam();
-            }
+            
+           Console.WriteLine($"Welkom {naam} ");
+        }
 
+        static void KryLetters()
+        {
+            letters = new char[Antwoord1.Length];
+            for (int i = 0; i < Antwoord1.Length; i++)
+                letters[i] = '-';
         }
 
         private static void SpeelSpel()
@@ -41,28 +47,53 @@ namespace Hangman
             Console.WriteLine("Raai die volgende woord!");
             VertoonVersteekteWoord();
             VraVirLetter();
+            TeksNaKarakter();
+            DrukKarakter();
         }
 
         static void VertoonVersteekteWoord()
         {
-            foreach (char c in Antwoord1)
-            {
-                Console.Write('-');
-            }
+            foreach (char c in letters)
+                Console.Write(c);
+
             Console.WriteLine();
         }
 
-        static void VraVirLetter()
+        static char VraVirLetter()
         { 
-                string input; 
-                do
-                {
-                    Console.WriteLine("Tik 'n letter in:");
-                    input = Console.ReadLine();
-                } while (input.Length != 1);
+               
+            
+            //Voeg 'n boodskap by wat foutkode aandui (Verander met while)
+            
+            string input; 
+            do
+            {
+              Console.WriteLine("Tik 'n letter in:");
+              input = Console.ReadLine();
+            } while (input.Length != 1);
 
-                AantalPogings++;
+            AantalPogings++;
+
+            return input[0];
         }
+
+        static void TeksNaKarakter()
+        {
+            char[] karReeks = Antwoord1.ToCharArray();
+
+            for (int i = 0; i < karReeks.Length; i++)
+            {
+                char ch = karReeks[i];
+            }
+        }
+
+        static void DrukKarakter()
+        {
+
+        }
+
+
+
 
         private static void EindigSpel()
         {
